@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using FluentAssertions;
 using Xunit;
 
 namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
@@ -6,10 +7,9 @@ namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
     public class CustomerBuilderTests
     {
         [Fact]
-        public async Task Bring_Method_GetCustomer_Under_Test()
+        public void Build_Customer_With_Primary_Address() // Then change to Postal
         {
-            var builder = new CustomerBuilder();
-            await builder.BuildCustomer("123");
+
         }
     }
 }

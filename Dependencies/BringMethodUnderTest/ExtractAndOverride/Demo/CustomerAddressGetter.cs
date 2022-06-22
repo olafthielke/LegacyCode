@@ -1,9 +1,9 @@
 ﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Dependencies.BringMethodUnderTest.ExposePublicMethod.Lab
+namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
 {
-    public static class CustomerAddressRetriever
+    public static class CustomerAddressGetter
     {
         public static async Task<Address> GetAddress(string customerNumber, string addressType)
         {

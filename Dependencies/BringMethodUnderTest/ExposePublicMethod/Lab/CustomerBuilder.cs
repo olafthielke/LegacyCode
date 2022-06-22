@@ -4,18 +4,27 @@ namespace Dependencies.BringMethodUnderTest.ExposePublicMethod.Lab
 {
     public class CustomerBuilder
     {
+        private CustomerDetailsRetriever _customerDetailsRetriever;
+
+        public CustomerBuilder()
+        {
+            _customerDetailsRetriever = new CustomerDetailsRetriever();
+        }
+
         public async Task<Customer> BuildCustomer(string customerNo)
         {
-            var det = await new CustomerDetailsRetriever().GetCustomerDetails(customerNo);
+            var det = await _customerDetailsRetriever.GetCustomerDetails(customerNo);
 
-            var add = await CustomerAddressRetriever.GetAddress(customerNo, "PRIMARY");
+            var add = await CustomerAddressGetter.GetAddress(customerNo, "PRIMARY");
 
             // TODO: We want to populate the FullName property on the Customer and are not really interested
-            // in testing the data retrieval part. How do we do best/most easily do that??
+            // in unit testing the data retrieval part. How do we unit test the returned Customer (first without
+            // and then with FullName) with the least hassle??
             return new Customer
             {
                 FirstName = det.FirstName,
                 LastName = det.LastName,
+                //FullName = $"{det.FirstName} {det.LastName}",
                 CustomerNumber = det.CustomerNumber,
                 LoyaltyScore = det.LoyaltyPoints,
                 AddressType = "PRIMARY",

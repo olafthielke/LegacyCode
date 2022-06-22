@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
-using FluentAssertions;
 using Xunit;
+using FluentAssertions;
 
 namespace Dependencies.BringMethodUnderTest.ExposePublicMethod.Demo
 {

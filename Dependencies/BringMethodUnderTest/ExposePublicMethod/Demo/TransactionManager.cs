@@ -18,16 +18,19 @@ namespace Dependencies.BringMethodUnderTest.ExposePublicMethod.Demo
             // TODO: Would rather just test Validate but it's a private method.
             await Validate(transaction);
 
+
             transaction.TransactionDate = DateTime.Today;
 
             await SqlBankTransactionWriter.SaveTransaction(transaction, ConnectionString);
 
             // ...
 
+            // ... Many more hard-to-break dependencies. :(
+
             return transaction;
         }
 
-        private async Task Validate(BankTransaction transaction)
+        public async Task Validate(BankTransaction transaction)
         {
             if (transaction == null)
                 throw new Exception("Transaction is required.");

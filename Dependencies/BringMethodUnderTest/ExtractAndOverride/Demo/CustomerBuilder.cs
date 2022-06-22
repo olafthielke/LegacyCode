@@ -4,17 +4,26 @@ namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
 {
     public class CustomerBuilder
     {
+        private CustomerDetailsRetriever _customerDetailsRetriever;
+
+        public CustomerBuilder()
+        {
+            _customerDetailsRetriever = new CustomerDetailsRetriever();
+        }
+
         public async Task<Customer> BuildCustomer(string customerNo)
         {
-            var det = await new CustomerDetailsRetriever().GetCustomerDetails(customerNo);
+            var det = await _customerDetailsRetriever.GetCustomerDetails(customerNo);
 
-            var add = await CustomerAddressRetriever.GetAddress(customerNo, "PRIMARY");
+            // TODO: We want to change the address type to "POSTAL" (also on Customer). How do we unit test that it's
+            // currently "PRIMARY"? And then change the test to verify "POSTAL" and then change the
+            // code to "POSTAL"?
+            var add = await CustomerAddressGetter.GetAddress(customerNo, "PRIMARY");
 
             return new Customer
             {
                 FirstName = det.FirstName,
                 LastName = det.LastName,
-                FullName = det.FirstName + " " + det.LastName,
                 CustomerNumber = det.CustomerNumber,
                 LoyaltyScore = det.LoyaltyPoints,
                 AddressType = "PRIMARY",
