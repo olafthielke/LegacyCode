@@ -30,7 +30,7 @@ namespace Dependencies.BringMethodUnderTest.ExposePublicMethod.Demo
             return transaction;
         }
 
-        public async Task Validate(BankTransaction transaction)
+        private async Task Validate(BankTransaction transaction)
         {
             if (transaction == null)
                 throw new Exception("Transaction is required.");

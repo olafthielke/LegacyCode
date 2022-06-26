@@ -1,6 +1,7 @@
-﻿using MongoDB.Driver;
+﻿using Dependencies.BringClassUnderTest.IntroduceSetter.Demo;
+using MongoDB.Driver;
 
-namespace Dependencies.BringClassUnderTest.IntroduceSetter.Demo
+namespace Dependencies.BringMethodUnderTest.IntroduceSetter.Demo
 {
     public class MongoDbConnector
     {

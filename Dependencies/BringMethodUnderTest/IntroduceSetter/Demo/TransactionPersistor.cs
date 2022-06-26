@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver.Core.Configuration;
+﻿using Dependencies.BringMethodUnderTest.IntroduceSetter.Demo;
+using MongoDB.Driver.Core.Configuration;
 
 namespace Dependencies.BringClassUnderTest.IntroduceSetter.Demo
 {

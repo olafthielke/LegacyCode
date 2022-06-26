@@ -23,7 +23,7 @@ namespace Dependencies.BringMethodUnderTest.PassNull.Lab
             if (details == null)
                 return null;
 
-            // TODO: details.Name contains the customer's full name in '{firstname} {lastname}' format.
+            // TODO: details.Name contains the customer's full name in '{lastname},{firstname}' format.
             // Please populate the currently empty customer.FirstName and customer.LastName properties.
             customer.CustomerNumber = details.CustomerId;
             customer.Salutation = (Salutation)details.Salutation;
