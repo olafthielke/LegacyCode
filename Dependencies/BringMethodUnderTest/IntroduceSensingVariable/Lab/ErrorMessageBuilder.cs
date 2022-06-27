@@ -6,7 +6,7 @@ namespace Dependencies.BringMethodUnderTest.IntroduceSensingVariable.Lab
 {
     public class ErrorMessageBuilder
     {
-        public static string BuildErrorMessage(IList<Error> errors)
+        public static string BuildErrorMessage(IList<ErrorData> errors)
         {
             if (errors == null || !errors.Any())
                 return string.Empty;
@@ -19,12 +19,12 @@ namespace Dependencies.BringMethodUnderTest.IntroduceSensingVariable.Lab
                 errorMsg = $"Got {errors.Count} errors: ";
 
             // Does this call to ErrorDispatcher have an effect on the errorMsg?
-            ErrorDispatcher.Dispatch(errors.Select(e => new ErrorData(e.Message, e.ErrorCode)));
+            ErrorDispatcher.Dispatch(errors);
 
             var i = 1;
             foreach (var error in errors)
             {
-                errorMsg += $"{i++}. Message: {error.Message}, Code: {error.ErrorCode} | ";
+                errorMsg += $"{i++}. Message: {error.Message}, Code: {error.Code} | ";
             }
 
             errorMsg = errorMsg.Substring(0, errorMsg.Length - 3);
