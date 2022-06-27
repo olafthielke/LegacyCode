@@ -1,4 +1,4 @@
-﻿namespace Dependencies.BringMethodUnderTest.ExtractMethod.Demo
+﻿namespace Dependencies.BringMethodUnderTest.Exercises.Exercise1
 {
     public class CustomerData
     {

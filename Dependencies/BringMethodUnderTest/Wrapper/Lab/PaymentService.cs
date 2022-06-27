@@ -6,15 +6,20 @@ namespace Dependencies.BringMethodUnderTest.Wrapper.Lab
 {
     public class PaymentService
     {
+        // TODO: Wrap unit tests around MakePayment() to characterise the behaviour.
+        // We don't want to break what it currently does.
         public PayResult MakePayment(PaymentData paymentData)
         {
             if (paymentData.Amount <= 0)
                 throw new Exception("Invalid payment amount!");
 
+            // This static call to ConfigurationManager.AppSettings is going to be trouble
+            // but we know how to overcome this by now.
             var gatewayCreds = ConfigurationManager.AppSettings["PaymentGatewayCreds"];
 
             var creds = gatewayCreds.Split('|');
 
+            // LegacyPaymentGateway is not our code and does not have a usable interface.  
             var gateway = new LegacyPaymentGateway();
 
             var response = gateway.Pay(new Authorization()

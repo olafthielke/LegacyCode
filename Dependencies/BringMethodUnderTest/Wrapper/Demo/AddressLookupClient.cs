@@ -14,6 +14,10 @@ namespace Dependencies.BringMethodUnderTest.Wrapper.Demo
 
             // ...
 
+            // TODO: We want to wrap unit tests around this method, LookupAddress(), yet LegacyWebClient
+            // is stopping us since it's trying to do Network IO. Furthermore, LegacyWebClient doesn't
+            // have a usable interface (or abstract base class) and it isn't our code so we can't add an
+            // interface. What do we do?
             var client = new LegacyWebClient();
 
             var response = client.GetString(AddressServiceBaseUrl + addressFragment);

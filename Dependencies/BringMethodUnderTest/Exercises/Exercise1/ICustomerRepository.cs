@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dependencies.BringMethodUnderTest.ExtractMethod.Demo
+﻿namespace Dependencies.BringMethodUnderTest.Exercises.Exercise1
 {
     public interface ICustomerRepository
     {

@@ -27,6 +27,7 @@ namespace Dependencies.BringMethodUnderTest.PassNull.Demo
             // since it's coming from the old system. On the other hand, if details.CustomerId does not start with a 'C' then
             // just assign to customer.CustomerNumber, ie. the current behaviour.
             customer.CustomerNumber = details.CustomerId;
+
             customer.Salutation = (Salutation)details.Salutation;
             customer.FirstName = details.FirstName;
             customer.LastName = details.LastName;

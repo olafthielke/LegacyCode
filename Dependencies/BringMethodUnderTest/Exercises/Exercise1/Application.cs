@@ -1,7 +1,7 @@
 ﻿using System;
 using log4net;
 
-namespace Dependencies.BringMethodUnderTest.ExtractMethod.Demo
+namespace Dependencies.BringMethodUnderTest.Exercises.Exercise1
 {
     public class Application
     {
@@ -27,7 +27,7 @@ namespace Dependencies.BringMethodUnderTest.ExtractMethod.Demo
                 }
                 else
                 {
-                    Logger.Error("No customer data.");
+                    Logger.Error("No customer dtaa.");
                 }
                 throw new Exception("No customer data.");
             }
