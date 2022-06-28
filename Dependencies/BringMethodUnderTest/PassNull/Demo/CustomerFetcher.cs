@@ -5,13 +5,17 @@ namespace Dependencies.BringMethodUnderTest.PassNull.Demo
 {
     public class CustomerFetcher
     {
-        private CustomerDetailsFetcher DetailsFetcher { get; }
+        private ICustomerDetailsFetcher DetailsFetcher { get; }
         private AddressFetcher AddressFetcher { get; set; }
 
 
-        public CustomerFetcher()
+        public CustomerFetcher() 
+            : this(new CustomerDetailsFetcher())
+        { }
+
+        public CustomerFetcher(ICustomerDetailsFetcher detailsFetcher)
         {
-            DetailsFetcher = new CustomerDetailsFetcher();
+            DetailsFetcher = detailsFetcher;
         }
 
 
@@ -26,7 +30,7 @@ namespace Dependencies.BringMethodUnderTest.PassNull.Demo
             // TODO: If details.CustomerId starts with 'C' then strip off the 'C' before assigning to customer.CustomerNumber
             // since it's coming from the old system. On the other hand, if details.CustomerId does not start with a 'C' then
             // just assign to customer.CustomerNumber, ie. the current behaviour.
-            customer.CustomerNumber = details.CustomerId;
+            customer.CustomerNumber = details.CustomerId.StartsWith("C") ? details.CustomerId.Substring(1) : details.CustomerId;
 
             customer.Salutation = (Salutation)details.Salutation;
             customer.FirstName = details.FirstName;
