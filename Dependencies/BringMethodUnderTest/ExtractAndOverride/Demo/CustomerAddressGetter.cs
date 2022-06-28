@@ -9,7 +9,7 @@ namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
         {
             var address = new Address();
 
-            var connString = "Data Source=(local);Initial Catalog=Customers;Integrated Security=true";
+            var connString = "Data Source=(local);Initial Catalog=Address;Integrated Security=true";
             var connection = new SqlConnection(connString);
             await connection.OpenAsync();
 

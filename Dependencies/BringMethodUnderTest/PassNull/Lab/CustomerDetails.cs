@@ -8,7 +8,7 @@ namespace Dependencies.BringMethodUnderTest.PassNull.Lab
         public int Salutation { get; set; }
         public string Name { get; set; }
         public string Birthdate { get; set; }
-        public int LoyaltyNumber { get; set; }
+        public int? LoyaltyNumber { get; set; }
         public string AddressGeoCode { get; set; }
     }
 }

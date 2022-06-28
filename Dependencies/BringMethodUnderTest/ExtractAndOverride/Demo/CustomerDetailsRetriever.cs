@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
 {
-    public class CustomerDetailsRetriever
+    public class CustomerDetailsRetriever : ICustomerDetailsRetriever
     {
         private const string ConnectionString = "Data Source=(local);Initial Catalog=Customers;Integrated Security=true";
 

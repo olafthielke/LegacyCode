@@ -4,11 +4,15 @@ namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
 {
     public class CustomerBuilder
     {
-        private CustomerDetailsRetriever _customerDetailsRetriever;
+        private ICustomerDetailsRetriever _customerDetailsRetriever;
 
-        public CustomerBuilder()
+        public CustomerBuilder() 
+            : this(new CustomerDetailsRetriever())
+        { }
+
+        public CustomerBuilder(ICustomerDetailsRetriever customerDetailsRetriever)
         {
-            _customerDetailsRetriever = new CustomerDetailsRetriever();
+            _customerDetailsRetriever = customerDetailsRetriever;
         }
 
         public async Task<Customer> BuildCustomer(string customerNo)
