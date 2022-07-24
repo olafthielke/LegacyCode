@@ -1,4 +1,4 @@
-﻿namespace Dependencies.BringMethodUnderTest.Exercises.Exercise1
+﻿namespace Dependencies.Refactor.ExtractSmallMethods
 {
     public enum LogLevel
     {

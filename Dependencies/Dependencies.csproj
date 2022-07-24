@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -31,7 +31,7 @@
 
   <ItemGroup>
     <Reference Include="LegacyLibrary">
-      <HintPath>bin\Debug\netcoreapp3.1\LegacyLibrary.dll</HintPath>
+      <HintPath>..\..\..\Users\olaft\source\repos\LegacyCode\Dependencies\bin\Debug\netcoreapp3.1\LegacyLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

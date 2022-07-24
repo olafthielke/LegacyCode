@@ -1,4 +1,4 @@
-﻿namespace Dependencies.BringMethodUnderTest.IntroduceSensingVariable.Demo
+﻿namespace Dependencies.Refactor.IntroduceSensingVariable.Demo
 {
     public class Address
     {
