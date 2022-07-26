@@ -2,7 +2,12 @@
 
 namespace Dependencies.BringClassUnderTest.ExtractInterface.Demo
 {
-    public class MessageStore
+    public interface IMessageStore
+    {
+        void Init(string status, int bucketId);
+    }
+
+    public class MessageStore : IMessageStore
     {
         const string TblName = "notifications";
 

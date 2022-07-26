@@ -2,19 +2,24 @@
 {
     public class BusinessWorkflow
     {
-        private WorkflowOrchestrator Orchestrator { get; }
+        private IWorkflowOrchestrator Orchestrator { get; }
 
         public BusinessWorkflow()
+        {
+            Orchestrator = BuildWorkflowOrchestrator();
+
+            Orchestrator.Init("STATUS_ACTIVE");
+
+            // ...
+        }
+
+        protected virtual IWorkflowOrchestrator BuildWorkflowOrchestrator()
         {
             var interpreter = new ModelInterpreter(AppConfig.GetCorrelationSensitivity());
 
             var customerDatabase = new SqlCustomerDatabase(AppConfig.GetConnectionString());
 
-            Orchestrator = new WorkflowOrchestrator(interpreter, customerDatabase);
-
-            Orchestrator.Init("STATUS_ACTIVE");
-
-            // ...
+            return new WorkflowOrchestrator(interpreter, customerDatabase);
         }
     }
 }
