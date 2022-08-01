@@ -10,8 +10,7 @@ namespace Dependencies.BringClassUnderTest.Wrapper.Demo
         [Fact]
         public void Bring_Class_Under_Test()
         {
-            var mockHttpClient = new Mock<IHttpClient>();
-            var lookup = new NzPostAddressLookupClient(mockHttpClient.Object);
+            var lookup = new NzPostAddressLookupClient();
         }
     }
 }

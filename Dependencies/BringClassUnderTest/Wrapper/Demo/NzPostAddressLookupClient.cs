@@ -8,20 +8,14 @@ namespace Dependencies.BringClassUnderTest.Wrapper.Demo
         public string ApiClientId { get; set; }
         public string ApiClientSecret { get; set; }
 
-        public IHttpClient Client { get; }
+        public HttpClient Client { get; } = new HttpClient();
 
 
         private const string AddressFinderUrl = "https://not-real-api.nzpost.co.nz/addressfinder/";
 
 
-        public NzPostAddressLookupClient() 
-            : this(new HttpClientWrapper())
-        { }
-
-        public NzPostAddressLookupClient(IHttpClient client)
+        public NzPostAddressLookupClient()
         {
-            Client = client;
-
             // This is made up. The point here is that this constructor 
             // makes a call to a remote service and therefore this class
             // should be side-stepped by our class instantiating it.
