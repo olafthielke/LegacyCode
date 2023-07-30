@@ -26,6 +26,8 @@ namespace Dependencies.Refactor.SproutMethod.Demo
                     var database = new MongoDbConnector(connString);
                     var employees = new List<Employee>(database.GetEmployees());
 
+
+
                     for (int i = 0; i < employees.Count; i++)
                     {
                         payroll += employees[i].Salary;
@@ -46,7 +48,7 @@ namespace Dependencies.Refactor.SproutMethod.Demo
         }
 
 
-        public List<Employee> GetUniqueEmployees(List<Employee> employees)
+        public IList<Employee> GetUniqueEmployees(IEnumerable<Employee> employees)
         {
             var uniqueEmployees = new List<Employee>();
             foreach (var employee in employees)
