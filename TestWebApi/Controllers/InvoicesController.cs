@@ -125,7 +125,6 @@ namespace TestWebApi.Controllers
                                 }
 
                                 var lineNumber = 0;
-                                var updateCmdStrings = new List<string>();
                                 foreach (var lx in i.Lines)
                                 {
                                     lx.LineNumber = lineNumber++;
@@ -133,15 +132,10 @@ namespace TestWebApi.Controllers
 
                                     string updateCmdStr =
                                         $"UPDATE [dbo].[InvoiceLines] SET [LineNumber] = {lx.LineNumber}, [Subtotal] = {lx.Subtotal} WHERE [Id] = {lx.InvoiceLineId}";
-                                    updateCmdStrings.Add(updateCmdStr);
-                                }
 
-                                foreach (var updateCmdStr in updateCmdStrings)
-                                {
                                     var cmd = new SqlCommand(updateCmdStr, connection);
                                     await cmd.ExecuteNonQueryAsync();
                                 }
-
 
                                 i.Total = i.Lines.Sum(l => l.Subtotal);
                                 if (i.GstApplies == true)
