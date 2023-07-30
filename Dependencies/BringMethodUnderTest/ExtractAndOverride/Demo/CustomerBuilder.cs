@@ -22,7 +22,7 @@ namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
             // TODO: We want to change the address type to "POSTAL" (also on Customer). How do we unit test that it's
             // currently "PRIMARY"? And then change the test to verify "POSTAL" and then change the
             // code to "POSTAL"?
-            var add = await CustomerAddressGetter.GetAddress(customerNo, "PRIMARY");
+            var add = await GetAddress(customerNo, "PRIMARY");
 
             return new Customer
             {
@@ -33,6 +33,12 @@ namespace Dependencies.BringMethodUnderTest.ExtractAndOverride.Demo
                 AddressType = "PRIMARY",
                 Address = $"{add.StreetNumber} {add.StreetName}, {add.Suburb}, {add.TownOrCity} {add.PostCode}"
             };
+        }
+
+
+        protected virtual async Task<Address> GetAddress(string customerNo, string addressType)
+        {
+            return await CustomerAddressGetter.GetAddress(customerNo, addressType);
         }
     }
 }
