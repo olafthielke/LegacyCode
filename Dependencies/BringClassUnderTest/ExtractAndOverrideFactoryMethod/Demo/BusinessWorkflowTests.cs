@@ -7,7 +7,7 @@ namespace Dependencies.BringClassUnderTest.ExtractAndOverrideFactoryMethod.Demo
         [Fact]
         public void Bring_Class_Under_Test()
         {
-            var workflow = new TestingBusinessWorkflow();
+            var workflow = new BusinessWorkflow();
         }
     }
 }

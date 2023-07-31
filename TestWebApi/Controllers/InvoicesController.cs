@@ -124,18 +124,7 @@ namespace TestWebApi.Controllers
                                     }
                                 }
 
-                                var lineNumber = 0;
-                                foreach (var lx in i.Lines)
-                                {
-                                    lx.LineNumber = lineNumber++;
-                                    lx.Subtotal = CalcSubtotal(lx, pros);
-
-                                    string updateCmdStr =
-                                        $"UPDATE [dbo].[InvoiceLines] SET [LineNumber] = {lx.LineNumber}, [Subtotal] = {lx.Subtotal} WHERE [Id] = {lx.InvoiceLineId}";
-
-                                    var cmd = new SqlCommand(updateCmdStr, connection);
-                                    await cmd.ExecuteNonQueryAsync();
-                                }
+                                await UpdateInvoiceLineToDb(i, pros, connection);
 
                                 i.Total = i.Lines.Sum(l => l.Subtotal);
                                 if (i.GstApplies == true)
@@ -168,6 +157,22 @@ namespace TestWebApi.Controllers
             {
                 Logger.Error("line is null");
                 throw new ArgumentNullException("line");
+            }
+        }
+
+        private static async Task UpdateInvoiceLineToDb(DbInvoice i, List<SqlProduct> pros, SqlConnection connection)
+        {
+            var lineNumber = 0;
+            foreach (var lx in i.Lines)
+            {
+                lx.LineNumber = lineNumber++;
+                lx.Subtotal = CalcSubtotal(lx, pros);
+
+                string updateCmdStr =
+                    $"UPDATE [dbo].[InvoiceLines] SET [LineNumber] = {lx.LineNumber}, [Subtotal] = {lx.Subtotal} WHERE [Id] = {lx.InvoiceLineId}";
+
+                var cmd = new SqlCommand(updateCmdStr, connection);
+                await cmd.ExecuteNonQueryAsync();
             }
         }
 
