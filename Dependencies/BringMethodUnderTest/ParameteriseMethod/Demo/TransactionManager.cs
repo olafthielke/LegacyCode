@@ -30,15 +30,14 @@ namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
             return transaction;
         }
 
-        private async Task Validate(BankTransaction transaction)
+        public async Task Validate(BankTransaction transaction)
         {
             if (transaction == null)
                 throw new Exception("Transaction is required.");
             if (string.IsNullOrWhiteSpace(transaction.Description))
                 throw new Exception("Particulars is required.");
-
-            // TODO: We want to validate the transaction.TransactionAmount and if it is 0,
-            // then throw a "0 is not a valid transaction amount." exception.
+            if (transaction.TransactionAmount == 0)
+                throw new Exception("0 is not a valid transaction amount.");
 
             var accountReader = new SqlBankAccountReader(ConnectionString);
             var bankAccount = await accountReader.GetBankAccount(transaction.AccountNumber);
@@ -46,6 +45,8 @@ namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
             if (bankAccount == null)
                 throw new Exception($"{transaction.AccountNumber} is not a valid account number.");
 
+            // TODO: This last conditional does not allow for the situation where the account is
+            // already overdrawn and the transaction is a credit, paying down the overdraft. 
             if (bankAccount.Balance + transaction.TransactionAmount < 0)
                 throw new Exception($"Account '{bankAccount.AccountNumber}' has insufficient funds for this transaction.");
         }

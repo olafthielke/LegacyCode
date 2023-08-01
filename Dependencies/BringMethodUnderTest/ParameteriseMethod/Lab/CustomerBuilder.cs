@@ -13,6 +13,7 @@ namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
 
         public async Task<Customer> BuildCustomer(string customerNo)
         {
+            // TODO: Write unit test covering the data retrieval.
             var det = await _customerDetailsRetriever.GetCustomerDetails(customerNo);
 
             var addressGetter = new CustomerAddressGetter();
