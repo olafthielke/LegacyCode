@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dependencies.BringClassUnderTest.ExtractInterface.Demo
+﻿namespace Dependencies.BringClassUnderTest.ExtractInterface.Demo
 {
     public class NotificationService
     {

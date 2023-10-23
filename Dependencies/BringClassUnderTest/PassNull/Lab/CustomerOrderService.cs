@@ -4,24 +4,24 @@ namespace Dependencies.BringClassUnderTest.PassNull.Lab
 {
     public class CustomerOrderService
     {
-        private OrderService OrderService { get; set; }
+        private OrderService _orderService;
 
         public CustomerOrderService(int config)
         {
             if (config <= 3)
             {
-                OrderService = new OrderService(config);
+                _orderService = new OrderService(config);
 
-                var isValidInit = OrderService.Initialise();
+                var isValidInit = _orderService.Initialise();
 
                 if (isValidInit != null || isValidInit == -1)
-                    OrderService.Prepopulate();
+                    _orderService.Prepopulate();
             }
         }
 
         public void CreateCustomerOrder(Customer customer, Order order)
         {
-            // Create and save a customer order via the OrderService.
+            // Create and save a customer order via the _orderService.
 
             // ...
         }

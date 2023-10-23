@@ -9,7 +9,7 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Demo
     {
         public CustomerService()
         {
-            // Assume that this class is very difficult to get under test,
+            // NOTE: Assume that this class is very difficult to get under test,
             // maybe because it has many concrete instantiations of other
             // services.
 
