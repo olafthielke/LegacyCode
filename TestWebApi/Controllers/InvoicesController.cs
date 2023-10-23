@@ -124,7 +124,20 @@ namespace TestWebApi.Controllers
                                     }
                                 }
 
-                                await UpdateInvoiceLineToDb(i, pros, connection);
+
+                                // TODO: Make line number to be 1 based. Currently 0 based.
+                                var lineNumber = 0;
+                                foreach (var lx in i.Lines)
+                                {
+                                    lx.LineNumber = lineNumber++;
+                                    lx.Subtotal = CalcSubtotal(lx, pros);
+
+                                    string updateCmdStr =
+                                        $"UPDATE [dbo].[InvoiceLines] SET [LineNumber] = {lx.LineNumber}, [Subtotal] = {lx.Subtotal} WHERE [Id] = {lx.InvoiceLineId}";
+
+                                    var cmd = new SqlCommand(updateCmdStr, connection);
+                                    await cmd.ExecuteNonQueryAsync();
+                                }
 
                                 i.Total = i.Lines.Sum(l => l.Subtotal);
                                 if (i.GstApplies == true)
