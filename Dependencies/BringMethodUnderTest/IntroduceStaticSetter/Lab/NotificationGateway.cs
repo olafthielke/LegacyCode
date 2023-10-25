@@ -7,12 +7,10 @@
             // ...
 
             var notifier = NotifierSingleton.GetInstance();
+
             var sender = notifier.GetSender();
 
-            if (sender != null)
-            {
-                sender.Send(notification);
-            }
+            sender.Send(notification);
 
             // ...
         }
