@@ -3,6 +3,6 @@
     public class Message
     {
         // TODO: Things a message might contain.
-        // However, it's not important to the example.
+        // However, it's not important for the example.
     }
 }
