@@ -37,7 +37,7 @@ namespace Dependencies.Refactor.Exercises.CoffeeMug
         [Fact]
         public void When_Coffee_Is_Empty_And_Coffeepot_Is_Full_Then_Refill_Coffee()
         {
-            const int numberOfWorkTasks = 3;    // Working!
+            const int numberOfWorkTasks = 4;    // Working!
             var work = new WorkSpy(numberOfWorkTasks);
             var coffee = new CoffeeSpy(3);
             var coffeePot = new CoffeepotSpy(2);
@@ -47,8 +47,8 @@ namespace Dependencies.Refactor.Exercises.CoffeeMug
 
             coffeePot.BrewCallCount.Should().Be(0);
             coffee.RefillCallCount.Should().Be(1);
-            coffee.DrinkCallCount.Should().Be(3);
-            work.ExecuteCallCount.Should().Be(3); 
+            coffee.DrinkCallCount.Should().Be(4);
+            work.ExecuteCallCount.Should().Be(4); 
         }
 
         [Fact]
