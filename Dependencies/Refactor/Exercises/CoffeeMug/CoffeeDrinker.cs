@@ -24,9 +24,9 @@ namespace Dependencies.Refactor.Exercises.CoffeeMug
             {
                 Coffee.Drink();
                 Work.Execute();
-                if (Coffee.State == "empty")
+                if (Coffee.IsEmpty)
                 {
-                    if (Coffeepot.State == "empty")
+                    if (Coffeepot.IsEmpty)
                         Coffeepot.Brew();
                     Coffee.Refill();
                 }

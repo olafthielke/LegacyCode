@@ -2,9 +2,9 @@
 {
     public class Coffee
     {
-        public int SipsRemaining { get; private set; }
+        public bool IsEmpty => SipsRemaining == 0;
 
-        public string State => SipsRemaining > 0 ? "got coffee" : "empty";
+        public int SipsRemaining { get; private set; }
 
         public Coffee(int sips = 0)
         {
