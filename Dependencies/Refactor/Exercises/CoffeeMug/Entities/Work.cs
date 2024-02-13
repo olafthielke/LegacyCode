@@ -1,8 +1,6 @@
-﻿using Dependencies.Refactor.Exercises.CoffeeMug.Interfaces;
-
-namespace Dependencies.Refactor.Exercises.CoffeeMug.Entities
+﻿namespace Dependencies.Refactor.Exercises.CoffeeMug.Entities
 {
-    public class Work : IWork
+    public class Work
     {
         public int TasksRemaining { get; private set; }
 

@@ -1,8 +1,6 @@
-﻿using Dependencies.Refactor.Exercises.CoffeeMug.Interfaces;
-
-namespace Dependencies.Refactor.Exercises.CoffeeMug.Entities
+﻿namespace Dependencies.Refactor.Exercises.CoffeeMug.Entities
 {
-    public class Coffeepot : ICoffeepot
+    public class Coffeepot
     {
         private int MugsOfCoffeeRemaining { get; set; }
 
@@ -13,13 +11,9 @@ namespace Dependencies.Refactor.Exercises.CoffeeMug.Entities
             MugsOfCoffeeRemaining = mugsOfCoffee;
         }
 
-        public void Refill()
-        {
-            // ?
-        }
-
         public virtual void Brew()
         {
+            // Brewing refills the Coffeepot with 4 mugs of coffee
             MugsOfCoffeeRemaining = 4;
         }
     }

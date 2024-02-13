@@ -1,11 +1,7 @@
-﻿using Dependencies.Refactor.Exercises.CoffeeMug.Interfaces;
-
-namespace Dependencies.Refactor.Exercises.CoffeeMug.Entities
+﻿namespace Dependencies.Refactor.Exercises.CoffeeMug.Entities
 {
-    public class Coffee : ICoffee
+    public class Coffee
     {
-        public const int RefillSips = 3;
-
         public int SipsRemaining { get; private set; }
 
         public string State => SipsRemaining > 0 ? "got coffee" : "empty";
@@ -28,7 +24,8 @@ namespace Dependencies.Refactor.Exercises.CoffeeMug.Entities
 
         public virtual void Refill()
         {
-            SipsRemaining = RefillSips;
+            // A Coffee refill provides 3 sips of coffee
+            SipsRemaining = 3;
         }
     }
 }

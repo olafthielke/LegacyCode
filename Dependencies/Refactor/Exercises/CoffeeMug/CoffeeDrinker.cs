@@ -1,22 +1,23 @@
-﻿using Dependencies.Refactor.Exercises.CoffeeMug.Interfaces;
+﻿using Dependencies.Refactor.Exercises.CoffeeMug.Entities;
 
 namespace Dependencies.Refactor.Exercises.CoffeeMug
 {
     public class CoffeeDrinker
     {
-        private IWork Work { get; }
-        private ICoffee Coffee { get; }
-        private ICoffeepot Coffeepot { get; }
+        private Work Work { get; }
+        private Coffee Coffee { get; }
+        private Coffeepot Coffeepot { get; }
 
         private bool Working => Work.TasksRemaining > 0;
 
-        public CoffeeDrinker(IWork work, ICoffee coffee, ICoffeepot coffeepot)
+        public CoffeeDrinker(Work work, Coffee coffee, Coffeepot coffeepot)
         {
             Work = work;
             Coffee = coffee;
             Coffeepot = coffeepot;
         }
 
+        // The 'CoffeeMug' function to refactor!
         public void Drink()
         {
             while (Working)
