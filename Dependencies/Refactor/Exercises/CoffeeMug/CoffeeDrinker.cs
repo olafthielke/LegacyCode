@@ -20,15 +20,19 @@ namespace Dependencies.Refactor.Exercises.CoffeeMug
         {
             while (Work.IsInProgress)
             {
-                if (Coffee.IsEmpty)
-                {
-                    if (Coffeepot.IsEmpty)
-                        Coffeepot.Brew();
-                    Coffee.Refill();
-                }
+                PrepareCoffee();
                 Coffee.Drink();
                 Work.Execute();
             }
+        }
+
+        private void PrepareCoffee()
+        {
+            if (!Coffee.IsEmpty)
+                return;
+            if (Coffeepot.IsEmpty)
+                Coffeepot.Brew();
+            Coffee.Refill();
         }
     }
 }
