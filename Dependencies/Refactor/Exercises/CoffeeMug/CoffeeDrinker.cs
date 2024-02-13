@@ -8,8 +8,6 @@ namespace Dependencies.Refactor.Exercises.CoffeeMug
         private Coffee Coffee { get; }
         private Coffeepot Coffeepot { get; }
 
-        private bool Working => Work.TasksRemaining > 0;
-
         public CoffeeDrinker(Work work, Coffee coffee, Coffeepot coffeepot)
         {
             Work = work;
@@ -20,7 +18,7 @@ namespace Dependencies.Refactor.Exercises.CoffeeMug
         // The 'CoffeeMug' function to refactor!
         public void Drink()
         {
-            while (Working)
+            while (Work.IsInProgress)
             {
                 Coffee.Drink();
                 Work.Execute();
