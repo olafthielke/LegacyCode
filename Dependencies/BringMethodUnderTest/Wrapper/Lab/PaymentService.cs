@@ -14,7 +14,7 @@ namespace Dependencies.BringMethodUnderTest.Wrapper.Lab
                 throw new Exception("Invalid payment amount!");
 
             // This static call to ConfigurationManager.AppSettings is going to be trouble
-            // but we know how to overcome this by now.
+            // but we know how to overcome this by now, right?
             var gatewayCreds = ConfigurationManager.AppSettings["PaymentGatewayCreds"];
 
             var creds = gatewayCreds.Split('|');
@@ -23,11 +23,11 @@ namespace Dependencies.BringMethodUnderTest.Wrapper.Lab
             var gateway = new LegacyPaymentGateway();
 
             var response = gateway.Pay(new Authorization()
-            {
-                AuthLevel = 2,
-                Username = creds[0] ?? paymentData.Username,
-                Password = creds[1] ?? paymentData.Password,
-            },
+                {
+                    AuthLevel = 2,
+                    Username = creds[0] ?? paymentData.Username,
+                    Password = creds[1] ?? paymentData.Password,
+                },
                 new Checkout()
                 {
                     Amount = paymentData.Amount

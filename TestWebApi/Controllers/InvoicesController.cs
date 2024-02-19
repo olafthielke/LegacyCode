@@ -95,6 +95,8 @@ namespace TestWebApi.Controllers
 
                                 var cmd = new SqlCommand(updateCmdStr, connection);
                                 await cmd.ExecuteNonQueryAsync();
+
+                                throw new Exception("some error occurred.");
                             }
                         }
                         else
@@ -122,13 +124,16 @@ namespace TestWebApi.Controllers
                                     }
                                 }
 
+
+                                // TODO: Make line number to be 1 based. Currently 0 based.
                                 var lineNumber = 0;
                                 foreach (var lx in i.Lines)
                                 {
                                     lx.LineNumber = lineNumber++;
                                     lx.Subtotal = CalcSubtotal(lx, pros);
 
-                                    string updateCmdStr = $"UPDATE [dbo].[InvoiceLines] SET [LineNumber] = {lx.LineNumber}, [Subtotal] = {lx.Subtotal} WHERE [Id] = {lx.InvoiceLineId}";
+                                    string updateCmdStr =
+                                        $"UPDATE [dbo].[InvoiceLines] SET [LineNumber] = {lx.LineNumber}, [Subtotal] = {lx.Subtotal} WHERE [Id] = {lx.InvoiceLineId}";
 
                                     var cmd = new SqlCommand(updateCmdStr, connection);
                                     await cmd.ExecuteNonQueryAsync();
@@ -165,6 +170,22 @@ namespace TestWebApi.Controllers
             {
                 Logger.Error("line is null");
                 throw new ArgumentNullException("line");
+            }
+        }
+
+        private static async Task UpdateInvoiceLineToDb(DbInvoice i, List<SqlProduct> pros, SqlConnection connection)
+        {
+            var lineNumber = 0;
+            foreach (var lx in i.Lines)
+            {
+                lx.LineNumber = lineNumber++;
+                lx.Subtotal = CalcSubtotal(lx, pros);
+
+                string updateCmdStr =
+                    $"UPDATE [dbo].[InvoiceLines] SET [LineNumber] = {lx.LineNumber}, [Subtotal] = {lx.Subtotal} WHERE [Id] = {lx.InvoiceLineId}";
+
+                var cmd = new SqlCommand(updateCmdStr, connection);
+                await cmd.ExecuteNonQueryAsync();
             }
         }
 

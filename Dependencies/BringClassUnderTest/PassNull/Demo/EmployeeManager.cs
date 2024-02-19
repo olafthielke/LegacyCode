@@ -4,7 +4,7 @@ namespace Dependencies.BringClassUnderTest.PassNull.Demo
 {
     public class EmployeeManager
     {
-        public MongoDbConnector _database { get; }
+        private MongoDbConnector _database;
 
         public EmployeeManager(string connString, bool store = true)
         {
@@ -25,6 +25,14 @@ namespace Dependencies.BringClassUnderTest.PassNull.Demo
             }
 
             return payroll;
+        }
+
+        public void UpdateEmployeeStatus(int employeeId, int status)
+        {
+            // This is a method using _database
+            var employee = _database.GetEmployee(employeeId);
+
+            // ...
         }
     }
 }

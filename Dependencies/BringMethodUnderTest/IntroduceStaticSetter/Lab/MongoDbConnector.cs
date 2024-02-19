@@ -1,6 +1,7 @@
-﻿using MongoDB.Driver;
+﻿using Dependencies.BringClassUnderTest.PassNull.Demo;
+using MongoDB.Driver;
 
-namespace Dependencies.BringClassUnderTest.PassNull.Demo
+namespace Dependencies.BringMethodUnderTest.IntroduceStaticSetter.Lab
 {
     public class MongoDbConnector
     {
