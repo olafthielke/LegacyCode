@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <Reference Include="LegacyLibrary">
-      <HintPath>..\..\..\Users\olaft\source\repos\LegacyCode\Dependencies\bin\Debug\netcoreapp3.1\LegacyLibrary.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\src\LegacyCode\LegacyLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

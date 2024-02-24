@@ -8,7 +8,7 @@ namespace Dependencies.Refactor.IntroduceSensingVariable.Lab
     {
         // We want to refactor BuildErrorMessage() to only be about building of error messages, yet we
         // have call to ErrorDispatcher.Dispatch(errors) right in there. Seemingly, dispatching of
-        // errors is unrelated to building of the error message. Therefore we would like to move out
+        // errors is unrelated to building of the error message. Therefore, we would like to move out
         // ErrorDispatcher.Dispatch() and do that in another place, probably wherever BuildErrorMessage()
         // is being called. We want to know whether moving ErrorDispatcher.Dispatch() has an effect on
         // the error message.
