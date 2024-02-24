@@ -10,5 +10,7 @@
         public int Status { get; set; }
         public int DeptId { get; set; }
         public int Bonus { get; set; }
+        public int HolidayDays { get; set; }
+        public bool OvertimeAllowanceExceeded { get; set; }
     }
 }

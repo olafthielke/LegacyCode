@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Dependencies.BringClassUnderTest.ParameteriseConstructor.Lab;
 using Dependencies.BringClassUnderTest.PassNull.Demo;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace WebApi.Controllers
 
         public EmployeesController()
         {
-            _employeeSaveService = new EmployeePersistanceService();
+            _employeeSaveService = new EmployeePersistanceService(AuditLevel.High);
 
             _employeeGetService = new EmployeeRetrievalService();
             _employees = _employeeGetService.LoadEmployees();
@@ -38,7 +39,25 @@ namespace WebApi.Controllers
         {
             EmployeeManager.UpdateEmployeeStatus(employeeId, status);
 
-            return -1;
+            var employee = _employees.SingleOrDefault(x => x.Id == employeeId);
+            if (employee == null)
+                return -1;
+
+            var dbEmp = new EmployeeModel
+            {
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                EmailAddress = employee.Email,
+                Salary = employee.Salary,
+                Bonus = employee.Bonus,
+                HolidayDays = employee.HolidayDays,
+                OvertimeAllowanceExceeded = employee.OvertimeAllowanceExceeded,
+                PaymentDate = DayOfTheWeek.Friday
+            };
+            
+            _employeeSaveService.SaveEmployee(dbEmp);
+
+            return 1;
         }
     }
 }

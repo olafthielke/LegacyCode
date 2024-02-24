@@ -4,7 +4,7 @@ namespace Dependencies.BringClassUnderTest.ParameteriseConstructor.Lab
 {
     public class EmployeePersistanceService
     {
-        private ISqlEmployeeWriter m_sqlEmployeeWriter;
+        private SqlEmployeeWriter m_sqlEmployeeWriter;
 
         public EmployeePersistanceService(AuditLevel audit = AuditLevel.None)
         {
@@ -12,15 +12,23 @@ namespace Dependencies.BringClassUnderTest.ParameteriseConstructor.Lab
                 throw new Exception("No auditing");
 
             m_sqlEmployeeWriter = new SqlEmployeeWriter();
-
-            // ...
         }
 
-        public void SaveEmployee(Employee e)
+        public void SaveEmployee(EmployeeModel e)
         {
-            m_sqlEmployeeWriter.Save(e);
+            // Before saving recalculate holidays.
+            if (e.Salary > 100000 && e.OvertimeAllowanceExceeded)
+            {
+                e.HolidayDays += 2;
+                e.Bonus = 1500;     // TODO: Reduce the bonus to $1250
+            }
+            else if (e.Salary < 58500 || e.OvertimeAllowanceExceeded)
+            {
+                e.HolidayDays++;
+                e.Bonus = 250;      
+            }
             
-            // ...
+            m_sqlEmployeeWriter.Save(e);
         }
     }
 

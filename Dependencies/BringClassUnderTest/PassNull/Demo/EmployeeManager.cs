@@ -71,7 +71,7 @@ namespace Dependencies.BringClassUnderTest.PassNull.Demo
             }
             else
             {
-                throw new Exception($"Employee with ID {employeeId} not found.");
+                throw new Exception($"EmployeeModel with ID {employeeId} not found.");
             }
         }
     }

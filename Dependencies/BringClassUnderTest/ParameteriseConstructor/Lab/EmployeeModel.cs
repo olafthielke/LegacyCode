@@ -1,11 +1,15 @@
 ﻿namespace Dependencies.BringClassUnderTest.ParameteriseConstructor.Lab
 {
-    public class Employee
+    public class EmployeeModel
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public int Salary { get; set; }
+        public int Bonus { get; set; }
+        public int HolidayDays { get; set; }
+        public bool OvertimeAllowanceExceeded { get; set; }
         public DayOfTheWeek PaymentDate { get; set; }
     }
 
