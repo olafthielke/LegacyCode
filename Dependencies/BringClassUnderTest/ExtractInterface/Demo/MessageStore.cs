@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using System.Collections.Generic;
+using Microsoft.WindowsAzure.Storage;
 
 namespace Dependencies.BringClassUnderTest.ExtractInterface.Demo
 {
@@ -25,5 +26,17 @@ namespace Dependencies.BringClassUnderTest.ExtractInterface.Demo
                 tbl.CreateIfNotExistsAsync().Wait();
             }
         }
+
+        public List<Message> GetMessages(string status)
+        {
+            var msgs = new List<Message>();
+            
+            // ... Get messages from Azure Table Storage.
+            
+            return msgs;
+        }
+        
+        
+        public void UpdateStatus(int id, string newStatus) { }
     }
 }

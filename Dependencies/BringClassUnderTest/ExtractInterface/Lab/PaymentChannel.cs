@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dependencies.BringClassUnderTest.ExtractInterface.Lab
+﻿namespace Dependencies.BringClassUnderTest.ExtractInterface.Lab
 {
     public  class PaymentChannel
     {

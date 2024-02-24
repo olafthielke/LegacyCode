@@ -11,6 +11,8 @@ namespace WebApi.Controllers
         public NotificationsController()
         {
             NotificationService = new NotificationService();
+
+            NotificationService.ProcessPendingNotifications(true);
         }
     }
 }
