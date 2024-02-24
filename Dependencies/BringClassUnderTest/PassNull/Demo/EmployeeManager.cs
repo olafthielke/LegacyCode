@@ -34,7 +34,7 @@ namespace Dependencies.BringClassUnderTest.PassNull.Demo
 
             if (employee != null)
             {
-                if (status < 1 || status > 5)
+                if (status > 5)
                 {
                     if (employee.DeptId == 3)
                     {
@@ -51,7 +51,7 @@ namespace Dependencies.BringClassUnderTest.PassNull.Demo
                     }
                     else if (employee.DeptId == 1)
                     {
-                        employee.Bonus = 5000;
+                        employee.Bonus = 5000;  // TODO: When employee is upper mgmt (DeptId = 1), increase bonus to 10000. 
                     }
                     else if (employee.DeptId == 11)
                     {

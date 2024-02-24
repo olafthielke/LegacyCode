@@ -35,5 +35,48 @@ namespace Dependencies.BringClassUnderTest.PassNull.Lab
         {
             // ...
         }
+
+        public bool CheckAvailability(Order order)
+        {
+            // ...
+
+            return true; 
+        }
+
+        public void UpdateOrderStatus(int orderId, string status)
+        {
+            // ...    
+        }
+
+        public void LogOrderAttempt(int orderId)
+        {
+            // ...
+        }
+
+        public ServiceResult CreateOrder(string customerId, Order order)
+        {
+            var result = new ServiceResult();
+            
+            // ...
+
+            return result;
+        }
+
+        public void SendOrderConfirmationEmail(Customer customer, int orderId)
+        {
+            
+        }
+
+        public void QueueOrderForConfirmation(Customer customer, int orderId)
+        {
+            // ...
+        }
+
+        public bool LogError(string message)
+        {
+            // ...
+
+            return true;
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Demo
         public string Name { get; set; }
         public CustomerCategory Category { get; set; }
         public string Address { get; set; }
+        public string EmailAddress { get; set; }
         public int LoyaltyScore { get; set; }
         public bool ManualCheckDone { get; set; }
         public bool CreatedByAdmin { get; set; }
