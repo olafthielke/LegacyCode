@@ -32,6 +32,8 @@ namespace WebApi.Controllers
             };
             
             CustomerOrderService.CreateCustomerOrder(customer, order);
+
+            AnalyticsService.Log(order);
         }
     }
 }

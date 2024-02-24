@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Moq;
+using Xunit;
 
 namespace Dependencies.BringClassUnderTest.ParameteriseConstructor.Demo
 {
@@ -7,7 +8,7 @@ namespace Dependencies.BringClassUnderTest.ParameteriseConstructor.Demo
         [Fact]
         public void Bring_Class_Under_Test()
         {
-
+            var srv = new AnalyticsService();
         }
     }
 }
