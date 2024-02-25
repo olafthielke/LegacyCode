@@ -7,7 +7,8 @@ namespace Dependencies.BringClassUnderTest.PrimitiviseParameter.Lab
     {
         public string ApiClientId { get; set; }
         public string ApiClientSecret { get; set; }
-
+        public string ConnectionString { get; set; }
+        
         public HttpClient Client { get; } = new HttpClient();
 
 

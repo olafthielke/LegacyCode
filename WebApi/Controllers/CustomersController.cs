@@ -1,8 +1,9 @@
-﻿using Dependencies.BringClassUnderTest.ParameteriseConstructor.Demo;
+﻿using System.Threading.Tasks;
+using Dependencies.BringClassUnderTest.ParameteriseConstructor.Demo;
 using Dependencies.BringClassUnderTest.PassNull.Lab;
 using Dependencies.BringClassUnderTest.PrimitiviseParameter.Demo;
+using Dependencies.BringClassUnderTest.PrimitiviseParameter.Lab;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Documents.SystemFunctions;
 
 namespace WebApi.Controllers
 {
@@ -11,16 +12,29 @@ namespace WebApi.Controllers
         private CustomerDatabase CustomerDatabase { get; set; }
         private AnalyticsService AnalyticsService { get; set; }
         private CustomerOrderService CustomerOrderService { get; set; }
+        private AddressLookupService AddressLookupService { get; set; }
 
         public CustomersController()
         {
             CustomerDatabase = new CustomerDatabase();
             AnalyticsService = new AnalyticsService();
             CustomerOrderService = new CustomerOrderService(7);
+
+            var config = new ConnectionStringConfig
+            {
+                DatabasesConfig = new DatabasesConfig
+                {
+                    DatabaseConfig = new DatabaseConfig
+                    {
+                        ConnectionString = "Some Connection String"
+                    }
+                }
+            };
+            AddressLookupService = new AddressLookupService(config);
         }
 
 
-        public void CreateCustomerOrder(string custEmail, Order order)
+        public async Task CreateCustomerOrder(string custEmail, Order order)
         {
             var dbCust = CustomerDatabase.GetCustomer(custEmail);
 
@@ -30,7 +44,10 @@ namespace WebApi.Controllers
                 Name = dbCust.Name,
                 Email = dbCust.EmailAddress
             };
-            
+
+            order.PostalAddress = await AddressLookupService.LookupAddress(customer.Address);
+
+
             CustomerOrderService.CreateCustomerOrder(customer, order);
 
             AnalyticsService.Log(order);
