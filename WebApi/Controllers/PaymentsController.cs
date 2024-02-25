@@ -1,4 +1,5 @@
-﻿using Dependencies.BringClassUnderTest.ExtractInterface.Lab;
+﻿using System.Threading.Tasks;
+using Dependencies.BringClassUnderTest.ExtractInterface.Lab;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -14,6 +15,11 @@ namespace WebApi.Controllers
             _payment = new PaymentChannel();
 
             // ...
+        }
+
+        public async Task Pay()
+        {
+            await _payment.ProcessPayment(100, "destinationAccount", true);
         }
     }
 }

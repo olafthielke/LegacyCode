@@ -8,6 +8,7 @@ namespace Dependencies.BringClassUnderTest.ExtractInterface.Demo
         public void Bring_Class_Under_Test()
         {
             // TODO: Bring the class under test.
+            var svc = new NotificationService();
         }
     }
 }

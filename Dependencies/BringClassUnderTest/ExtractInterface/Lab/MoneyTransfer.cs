@@ -59,6 +59,16 @@ namespace Dependencies.BringClassUnderTest.ExtractInterface.Lab
             var accessToken = JsonConvert.DeserializeObject<PayPalAccessToken>(content);
             return accessToken;
         }
+
+
+        public async Task<PaymentResult> InitiateTransfer(decimal amount, string destination, bool expedited)
+        {
+            var result = new PaymentResult { IsSuccess = true };
+
+            // ... Funds transfer
+
+            return result;
+        }
     }
 
     public class PayPalAccessToken
@@ -69,5 +79,11 @@ namespace Dependencies.BringClassUnderTest.ExtractInterface.Lab
         public string app_id { get; set; }
         public int expires_in { get; set; }
         public string nonce { get; set; }
+    }
+
+    public class PaymentResult
+    {
+        public bool IsSuccess { get; set; }
+        public string ErrorCode { get; set; }
     }
 }
