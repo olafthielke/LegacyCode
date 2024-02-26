@@ -1,7 +1,4 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-using Moq;
-using Xunit;
+﻿using Xunit;
 
 namespace Dependencies.BringClassUnderTest.Wrapper.Demo
 {

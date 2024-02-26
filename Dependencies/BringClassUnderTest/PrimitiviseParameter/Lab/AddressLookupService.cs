@@ -6,14 +6,14 @@ namespace Dependencies.BringClassUnderTest.PrimitiviseParameter.Lab
 {
     public class AddressLookupService
     {
-        private NzPostAddressLookupClient AddressClient { get; }
+        private GlobalAddressLookupClient AddressClient { get; }
 
         public AddressLookupService(ConnectionStringConfig config)
         {
-            var apiKey = ConfigurationManager.AppSettings["NzPostApiKey"];
+            var apiKey = ConfigurationManager.AppSettings["ApiKey"];
             var apiKeys = apiKey.Split('-');
 
-            AddressClient = new NzPostAddressLookupClient();
+            AddressClient = new GlobalAddressLookupClient();
 
             AddressClient.ApiClientId = apiKeys[0];
             AddressClient.ApiClientSecret = apiKeys[1];

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Dependencies.BringClassUnderTest.PrimitiviseParameter.Lab
 {
-    public class NzPostAddressLookupClient
+    public class GlobalAddressLookupClient
     {
         public string ApiClientId { get; set; }
         public string ApiClientSecret { get; set; }
@@ -12,10 +12,10 @@ namespace Dependencies.BringClassUnderTest.PrimitiviseParameter.Lab
         public HttpClient Client { get; } = new HttpClient();
 
 
-        private const string AddressFinderUrl = "https://not-real-api.nzpost.co.nz/addressfinder/";
+        private const string AddressFinderUrl = "https://not-real-api.globaladdresslookup.net/";
 
 
-        public NzPostAddressLookupClient()
+        public GlobalAddressLookupClient()
         {
             // This is made up. The point here is that this constructor 
             // makes a call to a remote service and therefore this class

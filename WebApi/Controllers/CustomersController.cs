@@ -3,6 +3,8 @@ using Dependencies.BringClassUnderTest.ParameteriseConstructor.Demo;
 using Dependencies.BringClassUnderTest.PassNull.Lab;
 using Dependencies.BringClassUnderTest.PrimitiviseParameter.Demo;
 using Dependencies.BringClassUnderTest.PrimitiviseParameter.Lab;
+using Dependencies.BringClassUnderTest.Wrapper.Demo;
+using Dependencies.BringMethodUnderTest.Wrapper.Demo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -13,6 +15,9 @@ namespace WebApi.Controllers
         private AnalyticsService AnalyticsService { get; set; }
         private CustomerOrderService CustomerOrderService { get; set; }
         private AddressLookupService AddressLookupService { get; set; }
+        
+        private NzPostAddressLookupClient NzPostAddressLookupClient { get; set; }
+
 
         public CustomersController()
         {
@@ -31,6 +36,7 @@ namespace WebApi.Controllers
                 }
             };
             AddressLookupService = new AddressLookupService(config);
+            NzPostAddressLookupClient = new NzPostAddressLookupClient();
         }
 
 
@@ -51,6 +57,8 @@ namespace WebApi.Controllers
             CustomerOrderService.CreateCustomerOrder(customer, order);
 
             AnalyticsService.Log(order);
+
+            var billingAddress = await NzPostAddressLookupClient.LookupAddress(customer.Address);
         }
     }
 }

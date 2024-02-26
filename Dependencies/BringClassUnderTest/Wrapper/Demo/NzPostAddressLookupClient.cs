@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Dependencies.BringClassUnderTest.Wrapper.Demo
@@ -16,21 +17,37 @@ namespace Dependencies.BringClassUnderTest.Wrapper.Demo
 
         public NzPostAddressLookupClient()
         {
-            // This is made up. The point here is that this constructor 
-            // makes a call to a remote service and therefore this class
-            // should be side-stepped by our class instantiating it.
-            // Will make any test SLOW, FRAGILE, and an INTEGRATION TEST. AVOID.
-            var response = Client.GetStringAsync(AddressFinderUrl).Result;
+            try
+            {
+                var response = Client.GetStringAsync(AddressFinderUrl).Result;
 
-            // Say, we need to check the response for some OK type result.
+                if (!response.StartsWith("ADDRESS RESULT"))
+                    throw new InvalidOperationException("NZ Post Service unavailable.");
+            }
+            catch (Exception)
+            {
+                throw new InvalidOperationException("NZ Post Service unavailable.");
+            }
         }
 
 
         public async Task<string> LookupAddress(string addressFragment)
         {
-            // call, say, the NZ Post Address lookup service. 
-
-            return null;
+            // TODO: We need to switch to the version 2 of the API. Version 2 uses a v=2 query parameter.
+            string requestUrl = AddressFinderUrl + "?address=" + Uri.EscapeDataString(addressFragment);
+            try
+            {
+                var response = await Client.GetStringAsync(requestUrl);
+                if (response.StartsWith("ADDRESS RESULT"))
+                {
+                    return response.Substring("ADDRESS RESULT: ".Length);
+                }
+                throw new InvalidOperationException("NZ Post Service lookup failed.");
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }
