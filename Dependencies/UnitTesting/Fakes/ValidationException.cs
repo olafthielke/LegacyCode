@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Dependencies.UnitTesting
+namespace Dependencies.UnitTesting.Fakes
 {
     public class ValidationException : ClientInputException
     {

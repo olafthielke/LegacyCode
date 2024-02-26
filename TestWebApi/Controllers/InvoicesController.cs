@@ -125,7 +125,7 @@ namespace TestWebApi.Controllers
                                 }
 
 
-                                // TODO: Make line number to be 1 based. Currently 0 based.
+                                // TODO: Make line number to be 1 based. Currently 0-based.
                                 var lineNumber = 0;
                                 foreach (var lx in i.Lines)
                                 {
@@ -173,21 +173,6 @@ namespace TestWebApi.Controllers
             }
         }
 
-        private static async Task UpdateInvoiceLineToDb(DbInvoice i, List<SqlProduct> pros, SqlConnection connection)
-        {
-            var lineNumber = 0;
-            foreach (var lx in i.Lines)
-            {
-                lx.LineNumber = lineNumber++;
-                lx.Subtotal = CalcSubtotal(lx, pros);
-
-                string updateCmdStr =
-                    $"UPDATE [dbo].[InvoiceLines] SET [LineNumber] = {lx.LineNumber}, [Subtotal] = {lx.Subtotal} WHERE [Id] = {lx.InvoiceLineId}";
-
-                var cmd = new SqlCommand(updateCmdStr, connection);
-                await cmd.ExecuteNonQueryAsync();
-            }
-        }
 
         private static decimal CalcSubtotal(DbInvoiceLine line, List<SqlProduct> products)
         {

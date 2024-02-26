@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dependencies.UnitTesting
+namespace Dependencies.UnitTesting.Fakes
 {
     public class Customer
     {

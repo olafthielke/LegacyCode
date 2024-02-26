@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
 
-namespace Dependencies.UnitTesting
+namespace Dependencies.UnitTesting.Fakes
 {
     public class RegisterCustomerUseCase
     {
         public ICustomerRepository Repository { get; }
         public ICustomerNotifier Notifier { get; }
 
-        
-        public RegisterCustomerUseCase(ICustomerRepository repository, 
+
+        public RegisterCustomerUseCase(ICustomerRepository repository,
             ICustomerNotifier notifier)
         {
             Repository = repository;
