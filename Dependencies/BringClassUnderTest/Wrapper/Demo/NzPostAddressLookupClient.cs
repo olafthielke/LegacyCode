@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -23,6 +24,8 @@ namespace Dependencies.BringClassUnderTest.Wrapper.Demo
 
                 if (!response.StartsWith("ADDRESS RESULT"))
                     throw new InvalidOperationException("NZ Post Service unavailable.");
+                
+                Debug.WriteLine("NZ Post Service is available.");
             }
             catch (Exception)
             {
