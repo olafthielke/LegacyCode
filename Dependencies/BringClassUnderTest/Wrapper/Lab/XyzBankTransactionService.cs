@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using LegacyLibrary.WebClient;
-using Microsoft.OData.UriParser;
 using Newtonsoft.Json;
 
 namespace Dependencies.BringClassUnderTest.Wrapper.Lab
 {
     public class XyzBankTransactionService
     {
-        public LegacyWebClient Client { get; } = new LegacyWebClient();
+        public LegacyWebClient _client { get; } = new LegacyWebClient();
 
 
         private static readonly Uri AuthUrl = new Uri("https://not-real-api.xyzbank.com.au/auth/");
@@ -19,16 +18,8 @@ namespace Dependencies.BringClassUnderTest.Wrapper.Lab
 
         public XyzBankTransactionService()
         {
-            // Synchronous network call in the constructor - not a good practice
-            try
-            {
-                _authToken = Client.GetString(AuthUrl.AbsoluteUri);
-                Debug.WriteLine("Authenticated successfully.");
-            }
-            catch
-            {
-                Trace.WriteLine("Authentication failed.");
-            }
+            _authToken = _client.GetString(AuthUrl.AbsoluteUri);
+            Debug.WriteLine("Authenticated successfully.");
         }
 
 
@@ -40,7 +31,7 @@ namespace Dependencies.BringClassUnderTest.Wrapper.Lab
             try
             {
                 // Here we should use _authToken, but it's just hard-coded for simplicity
-                string json = Client.GetString(transactionUrl);
+                string json = _client.GetString(transactionUrl);
 
                 Debug.WriteLine("Transactions fetched successfully.");
 

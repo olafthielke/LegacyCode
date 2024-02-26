@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Dependencies.BringClassUnderTest.Wrapper.Lab;
 using Microsoft.AspNetCore.Mvc;
 using TestWebApi.Models;
 using TestWebApi.Services;
+using Transaction = System.Transactions.Transaction;
 
 namespace TestWebApi.Controllers
 {
@@ -12,6 +14,9 @@ namespace TestWebApi.Controllers
     {
         private static readonly string _connectionString = "Data Source=(local);Initial Catalog=Banking;Integrated Security=true";
 
+        private readonly XyzBankTransactionService _xyzBankTransactionService = new XyzBankTransactionService();
+        
+        
 
         [HttpPost]
         public async Task<BankTransaction> Create(BankTransaction transaction)
@@ -38,6 +43,14 @@ namespace TestWebApi.Controllers
             await SqlBankTransactionWriter.SaveTransaction(transaction, _connectionString);
 
             return transaction;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(string accountNumber, int page = 1)
+        {
+            var tx = await _xyzBankTransactionService.GetTransactions(accountNumber, page);
+
+            return Ok(tx);
         }
     }
 }
