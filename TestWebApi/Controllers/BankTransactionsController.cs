@@ -4,7 +4,6 @@ using Dependencies.BringClassUnderTest.Wrapper.Lab;
 using Microsoft.AspNetCore.Mvc;
 using TestWebApi.Models;
 using TestWebApi.Services;
-using Transaction = System.Transactions.Transaction;
 
 namespace TestWebApi.Controllers
 {

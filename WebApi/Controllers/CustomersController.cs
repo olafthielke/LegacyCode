@@ -4,7 +4,6 @@ using Dependencies.BringClassUnderTest.PassNull.Lab;
 using Dependencies.BringClassUnderTest.PrimitiviseParameter.Demo;
 using Dependencies.BringClassUnderTest.PrimitiviseParameter.Lab;
 using Dependencies.BringClassUnderTest.Wrapper.Demo;
-using Dependencies.BringMethodUnderTest.Wrapper.Demo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
