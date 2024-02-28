@@ -2,8 +2,8 @@
 
 namespace Dependencies.UnitTesting.Exercises.PersonNameFormatting
 {
-    /// TODO: Write a class to format a person's first and last names into '{firstname}, {lastname}' format.
-    /// E.g. (Fred, Flinstone) becomes 'Flintstone, Fred'
+    /// TODO: Write a class to format a person's first and last names into '{lastname}, {firstname}' format.
+    /// E.g. (Fred, Flintstone) becomes 'Flintstone, Fred'
     /// (Barney, Rubble) becomes 'Rubble, Barney'
     // Suggestion: Feel free to try TDD.    
 
