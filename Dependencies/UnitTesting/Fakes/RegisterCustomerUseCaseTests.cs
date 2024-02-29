@@ -74,6 +74,7 @@ namespace Dependencies.UnitTesting.Fakes
             var customer = await useCase.RegisterCustomer(registration);
 
             // Assert
+            mockRepository.Verify(x => x.SaveCustomer(customer));
             mockNotifier.Verify(x => x.SendWelcomeMessage(customer));
         }
     }
