@@ -1,4 +1,7 @@
-﻿namespace Dependencies.BringClassUnderTest.ExtractAndOverrideFactoryMethod.Lab
+﻿using System.Configuration;
+using System.Net.Mail;
+
+namespace Dependencies.BringClassUnderTest.ExtractAndOverrideFactoryMethod.Lab
 {
     public class TransactionPersistor
     {
@@ -6,10 +9,16 @@
 
         private CommissionConfig _cconfig;
 
+        private readonly EmailNotificationService _notificationService;
+        
         public TransactionPersistor()
         {
-            MongoDb = new MongoDbConnector(AppSettings.ConnectionString);
+            var connectionString = ConfigurationManager.AppSettings["MongoDbConnectionString"];
+            MongoDb = new MongoDbConnector(StaticUtilityClass.DecryptConnectionString(connectionString));
 
+            _notificationService = new EmailNotificationService(StaticUtilityClass.GetEmailConfig(), MongoDb);
+
+            
             var commissionConfig = new CommissionConfig()
             {
                 Commission = 20,    // 20%
@@ -25,13 +34,28 @@
             {
                 Buyer = tx.Purchaser,
                 Seller = tx.Merchant,
-
-                // ...
+                
+                // ..
             };
 
             // ...
 
-            return MongoDb.SaveTx(dbTx);
+            var email = new MailMessage()
+            {
+                //
+            };
+
+            // ..
+
+            var res =  MongoDb.SaveTx(dbTx);
+
+
+            // ..
+
+
+            _notificationService.Send(email);
+
+            return res;
         }
     }
 }
