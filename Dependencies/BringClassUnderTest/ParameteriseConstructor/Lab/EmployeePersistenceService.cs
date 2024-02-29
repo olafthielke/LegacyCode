@@ -2,11 +2,11 @@
 
 namespace Dependencies.BringClassUnderTest.ParameteriseConstructor.Lab
 {
-    public class EmployeePersistanceService
+    public class EmployeePersistenceService
     {
         private SqlEmployeeWriter m_sqlEmployeeWriter;
 
-        public EmployeePersistanceService(AuditLevel audit = AuditLevel.None)
+        public EmployeePersistenceService(AuditLevel audit = AuditLevel.None)
         {
             if (audit == AuditLevel.None)
                 throw new Exception("No auditing");

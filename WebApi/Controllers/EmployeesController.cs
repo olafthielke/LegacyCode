@@ -11,7 +11,7 @@ namespace WebApi.Controllers
     {
         private const string connString = "mongodb://myUser:myPassword123@209.244.54.166:27017/myDatabase";
         
-        public EmployeePersistanceService _employeeSaveService;
+        public EmployeePersistenceService _employeeSaveService;
         public EmployeeRetrievalService _employeeGetService;
         private EmployeeManager EmployeeManager { get; } = new EmployeeManager(connString);
         private List<Employee> _employees;
@@ -20,7 +20,7 @@ namespace WebApi.Controllers
 
         public EmployeesController()
         {
-            _employeeSaveService = new EmployeePersistanceService(AuditLevel.High);
+            _employeeSaveService = new EmployeePersistenceService(AuditLevel.High);
 
             _employeeGetService = new EmployeeRetrievalService();
             _employees = _employeeGetService.LoadEmployees();
