@@ -1,4 +1,6 @@
-﻿namespace Dependencies.BringClassUnderTest.ExtractAndOverrideFactoryMethod.Demo
+﻿using System;
+
+namespace Dependencies.BringClassUnderTest.ExtractAndOverrideFactoryMethod.Demo
 {
     public class WorkflowOrchestrator
     {
@@ -8,7 +10,12 @@
         public WorkflowOrchestrator(ModelInterpreter interpreter, SqlCustomerDatabase customerDb)
         {
             _interpreter = interpreter;
+            if (_interpreter == null)
+                throw new InvalidOperationException("Must have a valid ModelInterpreter.");
+
             _customerDb = customerDb;
+            if (_customerDb == null)
+                throw new InvalidOperationException("Must have a valid SqlCustomerDatabase.");
         }
 
         public void Init(string status)
