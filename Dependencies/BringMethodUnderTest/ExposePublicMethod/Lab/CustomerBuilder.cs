@@ -18,13 +18,14 @@ namespace Dependencies.BringMethodUnderTest.ExposePublicMethod.Lab
             var add = await CustomerAddressGetter.GetAddress(customerNo, "PRIMARY");
 
             // TODO: We want to populate the FullName property on the Customer and are not really interested
-            // in unit testing the data retrieval part. How do we unit test the returned Customer (first without
-            // and then with FullName) with the least hassle??
+            // in unit testing the data retrieval part.
+            //
+            // How do we unit test the returned Customer (first without and then with FullName) with the least hassle??
             return new Customer
             {
                 FirstName = det.FirstName,
                 LastName = det.LastName,
-                //FullName = $"{det.FirstName} {det.LastName}",
+                //TODO: FullName = $"{det.FirstName} {det.LastName}", But with tests FIRST!
                 CustomerNumber = det.CustomerNumber,
                 LoyaltyScore = det.LoyaltyPoints,
                 AddressType = "PRIMARY",

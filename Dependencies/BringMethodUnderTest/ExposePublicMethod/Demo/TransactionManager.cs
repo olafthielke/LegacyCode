@@ -34,6 +34,7 @@ namespace Dependencies.BringMethodUnderTest.ExposePublicMethod.Demo
         {
             if (transaction == null)
                 throw new Exception("Transaction is required.");
+            
             if (string.IsNullOrWhiteSpace(transaction.Description))
                 throw new Exception("Particulars is required.");
 
