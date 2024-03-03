@@ -46,11 +46,6 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Lab
 
         public bool Validate(BankTransaction tx, BankAccount acc)
         {
-            return Validate(tx, acc, _overdraftLimit);
-        }
-
-        public static bool Validate(BankTransaction tx, BankAccount acc, decimal overdraftLimit)
-        {
             if (tx == null || acc == null)
                 return false;
 
@@ -62,7 +57,7 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Lab
             // 1. First, write tests to cover the existing condition.
             // 2. Then make changes to the tests that fix the bug, turning those tests red (i.e. failing)
             // 3. Finally, make changes to the code that fix the bug, turning the tests green (i.e. passing)
-            if (acc.Balance + tx.TransactionAmount < overdraftLimit)
+            if (acc.Balance + tx.TransactionAmount < _overdraftLimit)
                 return false;
 
             return true;
