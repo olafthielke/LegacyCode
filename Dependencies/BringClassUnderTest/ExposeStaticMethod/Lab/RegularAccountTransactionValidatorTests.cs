@@ -14,14 +14,14 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Lab
         //[Fact]
         //public void Given_BankTransaction_Is_Null_When_Call_Validate_Then_Returns_False()
         //{
-        //    var result = RegularAccountTransactionValidator.Validate(null, new BankAccount(), 0);
+        //    var result = RegularAccountTransactionValidator.Validate(null, new BankAccount());
         //    result.Should().BeFalse();
         //}
 
         //[Fact]
         //public void Given_BankAccount_Is_Null_When_Call_Validate_Then_Returns_False()
         //{
-        //    var result = RegularAccountTransactionValidator.Validate(new BankTransaction(), null, -1000);
+        //    var result = RegularAccountTransactionValidator.Validate(new BankTransaction(), null);
         //    result.Should().BeFalse();
         //}
 
