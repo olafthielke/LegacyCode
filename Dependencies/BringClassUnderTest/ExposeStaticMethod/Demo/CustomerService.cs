@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Demo
@@ -9,15 +8,34 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Demo
     {
         public CustomerService()
         {
-            // NOTE: Assume that this class is very difficult to get under test,
-            // maybe because it has many concrete instantiations of other
-            // services.
+            // Dependencies and conditions that make instantiation in test harness difficult.
 
-            // ...
+            if (!GlobalConfig.Instance.IsServiceEnabled)
+            {
+                throw new InvalidOperationException("Service is not enabled in GlobalConfig.");
+            }
 
-            // Similate the inability to call create an instance of this class by
-            // throwing an exception:
-            throw new InvalidOperationException();
+            var databaseService = new Lab.DatabaseManager(GlobalConfig.Instance.ConnString);
+            if (!databaseService.TestConnection())
+            {
+                throw new InvalidOperationException("Cannot establish a database connection.");
+            }
+
+            var requiredSetting = Environment.GetEnvironmentVariable("REQUIRED_SETTING");
+            if (string.IsNullOrEmpty(requiredSetting))
+            {
+                throw new InvalidOperationException("Required environment variable is not set.");
+            }
+
+            if (DateTime.Now.Millisecond % 2 == 0)
+            {
+                throw new InvalidOperationException("Cannot instantiate on even milliseconds.");
+            }
+
+            if (!File.Exists("/path/to/specific/config.file"))
+            {
+                throw new InvalidOperationException("Required configuration file is missing.");
+            }
         }
 
         public void ValidateCustomerNumber(Customer customer)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 
 namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Lab
 {
@@ -10,22 +11,39 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Lab
 
         public RegularAccountTransactionValidator()
         {
+            // Dependencies and conditions that make instantiation in test harness difficult.
+
             var limitsString = ConfigurationManager.AppSettings["RegularAccountLimits"];
             var limits = limitsString.Split('|');
 
             _overdraftLimit = Convert.ToDecimal(limits[0]);
             _maximumDepositAmount = Convert.ToDecimal(limits[1]);
 
-            // Assume that this class is very difficult to get under test,
-            // maybe because it has many concrete instantiations of other
-            // services.
 
-            // ...
+            if (!GlobalConfig.Instance.IsServiceEnabled)
+            {
+                throw new InvalidOperationException("Service is not enabled in GlobalConfig.");
+            }
 
-            // Similate the inability to call create an instance of this class by
-            // throwing an exception:
-            throw new InvalidOperationException();
+            var databaseService = new DatabaseManager(GlobalConfig.Instance.ConnString);
+            if (!databaseService.TestConnection())
+            {
+                throw new InvalidOperationException("Cannot establish a database connection.");
+            }
+
+            var requiredSetting = Environment.GetEnvironmentVariable("SETTINGS_REQUIRED");
+            if (string.IsNullOrEmpty(requiredSetting))
+            {
+                throw new InvalidOperationException("Required environment variable is not set.");
+            }
+
+            if (!File.Exists("/path/to/specific/config.file"))
+            {
+                throw new InvalidOperationException("Required configuration file is missing.");
+            }
         }
+        
+        
 
         public bool Validate(BankTransaction tx, BankAccount acc)
         {
