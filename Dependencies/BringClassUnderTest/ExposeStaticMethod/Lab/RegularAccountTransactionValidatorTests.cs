@@ -33,7 +33,7 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Lab
         //{
         //    var tx = new BankTransaction { AccountNumber = transactionAccountNumber };
         //    var acc = new BankAccount { AccountNumber = accountNumber };
-        //    var result = RegularAccountTransactionValidator.Validate(tx, acc, -1000);
+        //    var result = RegularAccountTransactionValidator.Validate(tx, acc);
         //    result.Should().BeFalse();
         //}
 

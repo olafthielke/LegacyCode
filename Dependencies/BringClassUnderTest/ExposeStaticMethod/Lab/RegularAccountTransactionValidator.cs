@@ -52,6 +52,8 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Lab
             if (tx.AccountNumber != acc.AccountNumber)
                 return false;
 
+            // NOTE: tx.TransactionAmount may be +ve for a deposit, or -ve for a withdrawal!
+
             // TODO: Fix bug in the following line.
             // Process like this:
             // 1. First, write tests to cover the existing condition.

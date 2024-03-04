@@ -15,10 +15,18 @@ namespace Dependencies.BringMethodUnderTest.ExposePublicMethod.Demo
 
         public async Task<BankTransaction> Create(BankTransaction transaction)
         {
-            // TODO: Would rather just test Validate but it's a private method.
+            var globalSetting = GlobalSettings.GetTransactionValidationMode();
+            if (globalSetting == "Extended")
+            {
+                // Perform some additional checks or manipulations that are hard to test
+                transaction.Description = "Extended: " + transaction.Description;
+            }
+            
+
+            // TODO: Would rather just test Validate, but it's a private method.
             await Validate(transaction);
 
-
+            
             transaction.TransactionDate = DateTime.Today;
 
             await SqlBankTransactionWriter.SaveTransaction(transaction, ConnectionString);
