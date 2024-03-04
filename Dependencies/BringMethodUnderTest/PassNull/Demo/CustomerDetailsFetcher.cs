@@ -5,12 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dependencies.BringMethodUnderTest.PassNull.Demo
 {
-    public interface ICustomerDetailsFetcher
-    {
-        Task<CustomerDetails> FetchDetails(string customerNumber);
-    }
-
-    public class CustomerDetailsFetcher : ICustomerDetailsFetcher
+    public class CustomerDetailsFetcher
     {
         private const string ConnectionStringName = "CustomerDB";
         private string ConnectionString { get; }

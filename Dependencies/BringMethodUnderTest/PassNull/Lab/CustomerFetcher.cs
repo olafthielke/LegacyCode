@@ -34,7 +34,7 @@ namespace Dependencies.BringMethodUnderTest.PassNull.Lab
             customer.LoyaltyMembershipNumber = details.LoyaltyNumber;
 
 
-            if (customer.LoyaltyMembershipNumber.HasValue)
+            if (!customer.LoyaltyMembershipNumber.HasValue)
             {
                 LoyaltyFetcher = new LoyaltySchemeFetcher();
 
