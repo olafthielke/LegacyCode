@@ -42,7 +42,10 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Demo
         {
             if (customer != null)
             {
-                Regex regex = new Regex("^C[0-9]{8}$", RegexOptions.IgnoreCase);
+                // Currently, customer number must be 8 digits long and only contain numbers.
+                // TODO: Change this to also allow for a 'C' prefix for customers from the old system.
+                
+                Regex regex = new Regex("^[0-9]{8}$", RegexOptions.IgnoreCase);
                 Match match = regex.Match(customer.Number);
 
                 if (match.Success &&
@@ -51,7 +54,7 @@ namespace Dependencies.BringClassUnderTest.ExposeStaticMethod.Demo
                     customer.ManualCheckDone &&
                     !customer.CreatedByAdmin)
                 {
-                    return; 
+                    return; // Valid customer.
                 }
                 else
                 {
