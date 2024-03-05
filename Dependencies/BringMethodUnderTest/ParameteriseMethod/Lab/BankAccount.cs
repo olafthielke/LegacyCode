@@ -1,4 +1,4 @@
-﻿namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
+﻿namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
 {
     public class BankAccount
     {

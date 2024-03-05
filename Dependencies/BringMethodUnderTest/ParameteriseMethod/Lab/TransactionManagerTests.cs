@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using System;
+﻿using System;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Xunit;
 
-namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
+namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
 {
     public class TransactionManagerTests
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
+namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
 {
     public class SqlCustomerReader
     {
@@ -12,7 +12,7 @@ namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
             SqlReader = sqlReader ?? throw new ArgumentNullException(nameof(sqlReader));
         }
 
-        public DbCustomer ReadCustomer()
+        public Lab_Hard.DbCustomer ReadCustomer()
         {
             var value = SqlReader["Guid"];
             var idString = value.ToString();
@@ -25,7 +25,7 @@ namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
 
             var emailAddress = SqlReader["EmailAddress"].ToString();
 
-            var client = new DbCustomer(lnStr, fnString)
+            var client = new Lab_Hard.DbCustomer(lnStr, fnString)
             {
                 Id = guid,
                 FirstName = fnString,

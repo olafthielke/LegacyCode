@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
+namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
 {
     public class CustomerBuilder
     {
@@ -14,6 +14,9 @@ namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
         public async Task<Customer> BuildCustomer(string customerNo)
         {
             // TODO: Write unit test covering the data retrieval.
+            // Please verify that GetCustomerDetails and GetAddress are called
+            // with the correct customer number and address type.
+            
             var det = await _customerDetailsRetriever.GetCustomerDetails(customerNo);
 
             var addressGetter = new CustomerAddressGetter();

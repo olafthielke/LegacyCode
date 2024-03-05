@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
+namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
 {
     public class SqlBankAccountReader
     {

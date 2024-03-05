@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
+namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
 {
     public class CustomerDetailsRetriever
     {

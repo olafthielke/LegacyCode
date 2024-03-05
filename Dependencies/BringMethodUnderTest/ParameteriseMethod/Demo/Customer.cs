@@ -1,4 +1,4 @@
-﻿namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Lab
+﻿namespace Dependencies.BringMethodUnderTest.ParameteriseMethod.Demo
 {
     public class Customer
     {
