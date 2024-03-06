@@ -46,16 +46,12 @@ namespace Dependencies.Refactor.SproutMethod.Demo
         }
 
 
-        public List<Employee> GetUniqueEmployees(List<Employee> employees)
+        
+        public List<Employee> FilterUniqueEmployees(IEnumerable<Employee> employees)
         {
-            var uniqueEmployees = new List<Employee>();
-            foreach (var employee in employees)
-            {
-                var existEmployee = uniqueEmployees.SingleOrDefault(e => e.Number == employee.Number);
-                if (existEmployee == null)
-                    uniqueEmployees.Add(employee);
-            }
-            return uniqueEmployees;
+            // TODO: Write this method using TDD.
+
+            return null;
         }
     }
 }
