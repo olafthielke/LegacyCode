@@ -2,7 +2,11 @@
 
 namespace Dependencies.CharacterisationTests.Demo
 {
-    // TODO: Change the CalculateTax() method so that couples earning below $20000 with 2 or more childen, pay no income tax.
+    // TODO: Modify CalculateTax():
+    // 1. Introduce a tax ceiling for married persons of $500,000.
+    // In other words, if you're married you'll pay no more than $500,000 in income tax.
+    // 2. Introduce a tax ceiling for unmarried persons of $1,000,000.
+    // In other words, if you're unmarried you'll pay no more than $1,000,000 in income tax.
     // All other taxes must not change!
 
     public class IncomeTaxCalculator
